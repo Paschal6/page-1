@@ -1,0 +1,1145 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal homepage for Kenneth Godpower, a young programmer building web and software projects." />
+  <link href="icon.ico" type="image/x-icon" rel="icon" />
+  <title>Kenneth Godpower | Young Programmer</title>
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('kenneth-theme');
+        const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = savedTheme || preferredTheme;
+      } catch (error) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #050816;
+      --page-2: #081024;
+      --surface: rgba(10, 18, 41, 0.78);
+      --surface-solid: #0b1329;
+      --surface-soft: rgba(255, 255, 255, 0.055);
+      --text: #edf6ff;
+      --heading: #ffffff;
+      --muted: #9caccb;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #00e5cc;
+      --accent-strong: #20f3dc;
+      --accent-2: #8a5cf6;
+      --accent-3: #33d17a;
+      --gold: #ffd166;
+      --shadow: 0 28px 85px rgba(0, 0, 0, 0.48);
+      --grid: rgba(255, 255, 255, 0.04);
+      --hero-a: rgba(0, 229, 204, 0.28);
+      --hero-b: rgba(138, 92, 246, 0.30);
+      --hero-c: rgba(51, 209, 122, 0.16);
+      --button-text: #04111f;
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --page: #f6f9ff;
+      --page-2: #eef5ff;
+      --surface: rgba(255, 255, 255, 0.84);
+      --surface-solid: #ffffff;
+      --surface-soft: rgba(15, 23, 42, 0.045);
+      --text: #172033;
+      --heading: #0d1424;
+      --muted: #526079;
+      --line: rgba(15, 23, 42, 0.13);
+      --accent: #078f84;
+      --accent-strong: #056f67;
+      --accent-2: #6544d8;
+      --accent-3: #14834a;
+      --gold: #a76d05;
+      --shadow: 0 26px 70px rgba(25, 37, 69, 0.14);
+      --grid: rgba(15, 23, 42, 0.055);
+      --hero-a: rgba(7, 143, 132, 0.16);
+      --hero-b: rgba(101, 68, 216, 0.14);
+      --hero-c: rgba(20, 131, 74, 0.10);
+      --button-text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 8%, var(--hero-b), transparent 31rem),
+        radial-gradient(circle at 86% 4%, var(--hero-a), transparent 29rem),
+        radial-gradient(circle at 48% 100%, var(--hero-c), transparent 34rem),
+        linear-gradient(180deg, var(--page), var(--page-2));
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 76%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid transparent;
+      backdrop-filter: blur(18px);
+    }
+
+    .site-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: color-mix(in srgb, var(--page) 76%, transparent);
+      border-bottom: 1px solid var(--line);
+      opacity: 0.92;
+      z-index: -1;
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      color: var(--button-text);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 14px 35px color-mix(in srgb, var(--accent) 28%, transparent);
+      font-weight: 950;
+    }
+
+    .brand-text {
+      min-width: 0;
+      line-height: 1.15;
+      overflow: visible;
+    }
+
+    .brand-text small {
+      display: block;
+      margin-top: -3px;
+      padding-right: 3px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-links a,
+    .theme-toggle {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 15px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 0;
+      background: transparent;
+      font-size: 0.94rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease;
+    }
+
+    .nav-links a:hover,
+    .theme-toggle:hover {
+      color: var(--heading);
+      background: var(--surface-soft);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    .theme-toggle .theme-icon {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--button-text);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-size: 0.82rem;
+    }
+
+    .hero {
+      padding: 82px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(360px, 0.94fr);
+      gap: 46px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 9px 13px;
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      border-radius: 999px;
+      color: var(--accent-strong);
+      background: color-mix(in srgb, var(--accent) 9%, transparent);
+      font-size: 0.9rem;
+      font-weight: 850;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-3) 75%, transparent);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 11px transparent; }
+      100% { box-shadow: 0 0 0 0 transparent; }
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--heading);
+    }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: 24px;
+      padding-right: 0.08em;
+      overflow: visible;
+      font-size: clamp(2.65rem, 6.2vw, 5.95rem);
+      line-height: 1.04;
+      letter-spacing: -0.052em;
+    }
+
+    .gradient-text {
+      padding-right: 0.08em;
+      padding-bottom: 0.04em;
+      background: linear-gradient(90deg, var(--heading), var(--accent), var(--accent-2) 78%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 670px;
+      margin-bottom: 32px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 900;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: var(--button-text);
+      background: linear-gradient(135deg, var(--accent), var(--accent-3));
+      box-shadow: 0 18px 42px color-mix(in srgb, var(--accent) 24%, transparent);
+    }
+
+    .btn-secondary {
+      color: var(--heading);
+      border-color: var(--line);
+      background: var(--surface);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 690px;
+    }
+
+    .metric-card,
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .metric-card {
+      padding: 17px;
+      border-radius: 21px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+    }
+
+    .metric-card strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--heading);
+      font-size: 1.05rem;
+    }
+
+    .metric-card span {
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .portrait-card {
+      position: relative;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 36px;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 13%, transparent), color-mix(in srgb, var(--accent-2) 13%, transparent)),
+        var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .portrait-card::before,
+    .portrait-card::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.26;
+      pointer-events: none;
+    }
+
+    .portrait-card::before {
+      top: -76px;
+      right: -62px;
+      background: var(--accent);
+    }
+
+    .portrait-card::after {
+      left: -78px;
+      bottom: -82px;
+      background: var(--accent-2);
+    }
+
+    .portrait-inner {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: #07101f;
+    }
+
+    .silhouette-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 19px;
+      color: #edf6ff;
+      background: rgba(5, 8, 22, 0.76);
+      backdrop-filter: blur(15px);
+    }
+
+    .caption b,
+    .caption small {
+      display: block;
+    }
+
+    .caption b {
+      font-size: 0.98rem;
+    }
+
+    .caption small {
+      color: #9caccb;
+      font-size: 0.82rem;
+    }
+
+    .terminal-dot-row {
+      display: flex;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .terminal-dot-row i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .terminal-dot-row i:nth-child(1) { background: #ff5f56; }
+    .terminal-dot-row i:nth-child(2) { background: #ffbd2e; }
+    .terminal-dot-row i:nth-child(3) { background: #27c93f; }
+
+    section {
+      padding: 58px 0;
+      scroll-margin-top: 105px;
+    }
+
+    #projects {
+      scroll-margin-top: 105px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent-strong);
+      font-size: 0.82rem;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.85rem, 3vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .section-heading p {
+      max-width: 510px;
+      color: var(--muted);
+    }
+
+    .panel {
+      border-radius: var(--radius-xl);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 20px;
+    }
+
+    .profile-copy {
+      padding: 30px;
+    }
+
+    .profile-copy h3 {
+      max-width: 680px;
+      margin-bottom: 13px;
+      font-size: clamp(1.35rem, 2vw, 1.75rem);
+      line-height: 1.25;
+      letter-spacing: -0.035em;
+    }
+
+    .profile-copy p {
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .principle {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+    }
+
+    .principle strong {
+      display: block;
+      color: var(--heading);
+      font-size: 0.96rem;
+      margin-bottom: 2px;
+    }
+
+    .principle span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .code-card {
+      padding: 24px;
+      background: color-mix(in srgb, var(--surface-solid) 70%, #07101f);
+      overflow: hidden;
+    }
+
+    html[data-theme="dark"] .code-card {
+      background: #060b18;
+    }
+
+    .code-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .code-top span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.93rem;
+      line-height: 1.75;
+    }
+
+    .code-green { color: var(--accent-3); }
+    .code-cyan { color: var(--accent); }
+    .code-purple { color: var(--accent-2); }
+    .code-yellow { color: var(--gold); }
+    .code-muted { color: var(--muted); }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      position: relative;
+      min-height: 254px;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 14%, transparent), transparent 45%);
+      pointer-events: none;
+    }
+
+    .project-card > * {
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      box-shadow: 0 32px 80px color-mix(in srgb, var(--accent) 12%, transparent);
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .project-number {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--accent-strong);
+      border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+      background: color-mix(in srgb, var(--accent) 9%, transparent);
+      font-size: 0.76rem;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .project-card h3 {
+      margin-bottom: 9px;
+      font-size: 1.18rem;
+      letter-spacing: -0.02em;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 20px;
+      color: var(--accent-strong);
+      font-weight: 950;
+      font-size: 0.92rem;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: center;
+      padding: 32px;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--accent-2) 12%, transparent)),
+        var(--surface);
+    }
+
+    .contact-panel h2 {
+      margin-bottom: 8px;
+      font-size: clamp(1.6rem, 2.6vw, 2.55rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .contact-panel p {
+      max-width: 680px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .float-code {
+      animation: floaty 5.8s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .float-code:nth-of-type(2n) {
+      animation-delay: -2.4s;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); opacity: 0.78; }
+      50% { transform: translateY(-9px); opacity: 1; }
+    }
+
+    @media (max-width: 940px) {
+      .hero-grid,
+      .profile-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 34px;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        min-height: auto;
+        padding: 17px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav-links {
+        flex: 1;
+      }
+
+      .metrics,
+      .principles {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wrap {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+      }
+
+      .nav-actions {
+        gap: 8px;
+      }
+
+      .nav-links,
+      .theme-toggle {
+        padding: 7px;
+      }
+
+      .nav-links a,
+      .theme-toggle {
+        min-height: 38px;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: 0.86rem;
+      }
+
+      .theme-toggle [data-theme-label] {
+        display: none;
+      }
+
+      h1 {
+        max-width: 100%;
+        padding-right: 0.12em;
+        font-size: clamp(2.35rem, 13.5vw, 3.35rem);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+      }
+
+      .hero {
+        padding: 54px 0 44px;
+      }
+
+      .caption {
+        position: static;
+        margin: 12px;
+      }
+
+      .profile-copy,
+      .code-card,
+      .project-card,
+      .contact-panel {
+        padding: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="#top" class="brand" aria-label="Kenneth Godpower homepage">
+        <span class="brand-mark">KG</span>
+        <span class="brand-text">Kenneth Godpower <small>Young Programmer</small></span>
+      </a>
+
+      <div class="nav-actions">
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#projects">Projects</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode" aria-pressed="false">
+          <span class="theme-icon" data-theme-icon aria-hidden="true">🌙</span>
+          <span data-theme-label>Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow"><span class="status-dot"></span> Personal Profile • Web & Software Projects</div>
+          <h1>Kenneth Godpower, <span class="gradient-text">Young Programmer</span>.</h1>
+          <p class="lead">
+            I am building a strong foundation in programming by creating practical web projects, improving my logic, and learning how to turn ideas into clean digital experiences.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">View Projects →</a>
+            <a class="btn btn-secondary" href="#profile">Read Profile</a>
+          </div>
+
+          <div class="metrics" aria-label="Profile highlights">
+            <div class="metric-card">
+              <strong>Identity</strong>
+              <span>Young Programmer</span>
+            </div>
+            <div class="metric-card">
+              <strong>Focus</strong>
+              <span>Web pages & useful tools</span>
+            </div>
+            <div class="metric-card">
+              <strong>Mindset</strong>
+              <span>Learn, build, improve</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portrait-card" aria-label="Silhouette illustration of a programmer">
+          <div class="portrait-inner">
+            <svg class="silhouette-svg" viewBox="0 0 620 620" role="img" aria-labelledby="silhouetteTitle silhouetteDesc" xmlns="http://www.w3.org/2000/svg">
+              <title id="silhouetteTitle">Programmer silhouette</title>
+              <desc id="silhouetteDesc">A dark silhouette of a programmer using a laptop, surrounded by glowing code in cyan, green, and purple.</desc>
+              <defs>
+                <linearGradient id="screenGlow" x1="90" y1="130" x2="530" y2="490" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00F5D4" stop-opacity="0.42" />
+                  <stop offset="0.55" stop-color="#8A5CF6" stop-opacity="0.30" />
+                  <stop offset="1" stop-color="#36E37F" stop-opacity="0.30" />
+                </linearGradient>
+                <linearGradient id="codeGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#00F5D4" />
+                  <stop offset="1" stop-color="#36E37F" />
+                </linearGradient>
+                <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="7" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <rect width="620" height="620" fill="#070D1C" />
+              <path d="M0 104C93 56 180 38 262 52C386 73 424 154 521 137C566 129 596 103 620 74V0H0V104Z" fill="url(#screenGlow)" opacity="0.45" />
+              <path d="M0 493C91 546 199 566 295 537C397 507 445 445 533 463C572 471 599 491 620 512V620H0V493Z" fill="url(#screenGlow)" opacity="0.28" />
+
+              <g opacity="0.26">
+                <path d="M68 0V620M146 0V620M224 0V620M302 0V620M380 0V620M458 0V620M536 0V620" stroke="#FFFFFF" stroke-width="1" />
+                <path d="M0 68H620M0 146H620M0 224H620M0 302H620M0 380H620M0 458H620M0 536H620" stroke="#FFFFFF" stroke-width="1" />
+              </g>
+
+              <g class="float-code" filter="url(#glow)" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-weight="800">
+                <text x="64" y="118" fill="#00F5D4" font-size="25">&lt;code&gt;</text>
+                <text x="410" y="112" fill="#36E37F" font-size="21">{ build }</text>
+                <text x="70" y="205" fill="#BCA7FF" font-size="19">const dream = true;</text>
+                <text x="420" y="205" fill="#00F5D4" font-size="22">10101</text>
+                <text x="75" y="455" fill="#36E37F" font-size="22">function()</text>
+                <text x="405" y="468" fill="#BCA7FF" font-size="20">npm start</text>
+              </g>
+
+              <g opacity="0.86">
+                <rect x="147" y="402" width="326" height="28" rx="14" fill="#020617" />
+                <path d="M170 430H450L486 505C492 518 482 533 467 533H153C138 533 128 518 134 505L170 430Z" fill="#030712" />
+                <path d="M199 452H421L438 493H182L199 452Z" fill="#111827" />
+                <path d="M246 512H374" stroke="#00F5D4" stroke-width="8" stroke-linecap="round" opacity="0.75" />
+                <path d="M174 430H447" stroke="#00F5D4" stroke-width="3" opacity="0.55" />
+              </g>
+
+              <g>
+                <ellipse cx="310" cy="515" rx="172" ry="24" fill="#000" opacity="0.35" />
+                <path d="M214 382C226 330 259 300 310 300C361 300 394 330 406 382L417 431H203L214 382Z" fill="#05070F" />
+                <path d="M244 353C258 326 280 312 310 312C340 312 362 326 376 353" stroke="#172036" stroke-width="12" stroke-linecap="round" />
+                <circle cx="310" cy="236" r="67" fill="#05070F" />
+                <path d="M245 225C253 174 284 143 326 151C366 158 390 188 386 230C358 209 316 200 245 225Z" fill="#03050C" />
+                <path d="M253 277C270 299 289 310 310 310C333 310 353 298 369 276" stroke="#151E34" stroke-width="10" stroke-linecap="round" />
+                <path d="M215 388C174 396 147 420 133 459" stroke="#05070F" stroke-width="35" stroke-linecap="round" />
+                <path d="M405 388C446 396 473 420 487 459" stroke="#05070F" stroke-width="35" stroke-linecap="round" />
+              </g>
+
+              <g filter="url(#glow)">
+                <path d="M204 158L161 198L204 238" fill="none" stroke="#00F5D4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M416 158L459 198L416 238" fill="none" stroke="#36E37F" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M337 141L283 257" stroke="#8A5CF6" stroke-width="8" stroke-linecap="round" />
+              </g>
+            </svg>
+
+            <div class="caption">
+              <div>
+                <b>Kenneth Godpower</b>
+                <small>young-programmer/profile.js</small>
+              </div>
+              <span class="terminal-dot-row" aria-hidden="true"><i></i><i></i><i></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile" class="wrap">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">Profile</span>
+          <h2>Professional, focused, and always improving.</h2>
+        </div>
+        <p>A clean profile section that introduces Kenneth Godpower as a young programmer with a practical, project-based learning style.</p>
+      </div>
+
+      <div class="profile-grid">
+        <article class="panel profile-copy">
+          <h3>I create small but useful projects while growing my skills as a programmer.</h3>
+          <p>
+            My coding journey is built on practice, curiosity, and consistency. I enjoy creating web pages, calculators, lists, and digital tools that help me understand how real software is designed and developed.
+          </p>
+          <p>
+            Every project is a step forward: I learn from the process, improve the design, and keep building with purpose.
+          </p>
+
+          <div class="principles" aria-label="Working principles">
+            <div class="principle">
+              <strong>Clean Design</strong>
+              <span>Simple layouts with clear structure.</span>
+            </div>
+            <div class="principle">
+              <strong>Useful Code</strong>
+              <span>Projects that solve real needs.</span>
+            </div>
+            <div class="principle">
+              <strong>Growth Mindset</strong>
+              <span>Learning and improving daily.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel code-card" aria-label="Code themed profile card">
+          <div class="code-top">
+            <span>kenneth.profile.js</span>
+            <span class="terminal-dot-row" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <pre><span class="code-purple">const</span> profile = {
+  name: <span class="code-yellow">"Kenneth Godpower"</span>,
+  title: <span class="code-yellow">"Young Programmer"</span>,
+  focus: [<span class="code-cyan">"web pages"</span>, <span class="code-cyan">"tools"</span>, <span class="code-cyan">"practice projects"</span>],
+  method: <span class="code-yellow">"learn by building"</span>,
+  goal: <span class="code-green">"become better with every project"</span>
+};
+
+<span class="code-muted">// current status</span>
+profile.buildNextProject();</pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="wrap">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">Selected Work</span>
+          <h2>Featured Projects</h2>
+        </div>
+        <p>Live projects by Kenneth Godpower. Each card opens the project in a new tab.</p>
+      </div>
+
+      <div class="projects">
+        <a class="panel project-card" href="https://paschal6.github.io/Elements-2/element.html" target="_blank" rel="noopener noreferrer">
+          <div class="project-top">
+            <span class="project-number">01</span>
+            <span class="tag">Under Development</span>
+          </div>
+          <h3>Elements Page</h3>
+          <p>An element page that is still under development, created as part of my continuous programming practice.</p>
+          <span class="project-link">Open project →</span>
+        </a>
+
+        <a class="panel project-card" href="https://paschal6.github.io/diocese-1/images.html" target="_blank" rel="noopener noreferrer">
+          <div class="project-top">
+            <span class="project-number">02</span>
+            <span class="tag">Live Project</span>
+          </div>
+          <h3>Bishops & Archbishops List</h3>
+          <p>A visual page presenting a list of bishops and archbishops in a structured and accessible layout.</p>
+          <span class="project-link">Open project →</span>
+        </a>
+
+        <a class="panel project-card" href="https://paschal6.github.io/converter-1/converter-1.html" target="_blank" rel="noopener noreferrer">
+          <div class="project-top">
+            <span class="project-number">03</span>
+            <span class="tag">Live Project</span>
+          </div>
+          <h3>Unit Converter Calculator</h3>
+          <p>A unit converter calculator designed to help users quickly convert different measurements and values.</p>
+          <span class="project-link">Open project →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="panel contact-panel">
+        <div>
+          <h2>More projects coming soon.</h2>
+          <p>
+            This portfolio will continue to grow as Kenneth Godpower builds more web pages, tools, and programming projects.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="#projects">Explore Work</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>© <span id="year">2026</span> Kenneth Godpower. Young Programmer.</p>
+  </footer>
+
+  <script>
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.querySelector('[data-theme-icon]');
+    const themeLabel = document.querySelector('[data-theme-label]');
+
+    function applyTheme(theme) {
+      const isLight = theme === 'light';
+      document.documentElement.dataset.theme = theme;
+      if (themeToggle) {
+        themeToggle.setAttribute('aria-pressed', String(isLight));
+      }
+      if (themeIcon) {
+        themeIcon.textContent = isLight ? '☀️' : '🌙';
+      }
+      if (themeLabel) {
+        themeLabel.textContent = isLight ? 'Light' : 'Dark';
+      }
+      try {
+        localStorage.setItem('kenneth-theme', theme);
+      } catch (error) {}
+    }
+
+    applyTheme(document.documentElement.dataset.theme || 'dark');
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        const currentTheme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+        applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        const targetId = link.getAttribute('href').slice(1);
+        const targetSection = document.getElementById(targetId);
+        if (!targetSection) return;
+
+        event.preventDefault();
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + targetId);
+      });
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a103a82c7dd5ad07',t:'MTc4MjIxOTQyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
