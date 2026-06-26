@@ -1,12 +1,11 @@
 
-
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Personal homepage for Kenneth Godspower, a young programmer building web and software projects." />
-  <link href="icon.ico" type="image/x-icon" rel="icon" />
+  <link href="icon.ico" rel="icon" type="image/x-icon">
   <title>Kenneth Godspower | Young Programmer</title>
   <script>
     (function () {
@@ -314,6 +313,13 @@
       color: transparent;
     }
 
+    .safe-word {
+      display: inline-block;
+      padding-right: 0.18em;
+      margin-right: -0.05em;
+      overflow: visible;
+    }
+
     .lead {
       max-width: 670px;
       margin-bottom: 32px;
@@ -359,7 +365,7 @@
 
     .metrics {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
       gap: 14px;
       max-width: 690px;
     }
@@ -620,7 +626,7 @@
 
     .projects {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
       gap: 18px;
     }
 
@@ -793,6 +799,13 @@
       }
     }
 
+    @media (max-width: 380px) {
+      h1 {
+        font-size: clamp(2.1rem, 12vw, 2.75rem);
+        letter-spacing: -0.025em;
+      }
+    }
+
     @media (max-width: 520px) {
       .wrap {
         width: min(100% - 28px, 1120px);
@@ -875,7 +888,7 @@
       <div class="hero-grid">
         <div>
           <div class="eyebrow"><span class="status-dot"></span> Personal Profile • Web & Software Projects</div>
-          <h1>Kenneth Godspower, <span class="gradient-text">Young Programmer</span>.</h1>
+          <h1>Kenneth Godspower, <span class="gradient-text">Young</span> <span class="gradient-text safe-word">Programmer</span>.</h1>
           <p class="lead">
             I am building a strong foundation in programming by creating practical web projects, improving my logic, and learning how to turn ideas into clean digital experiences.
           </p>
@@ -1041,7 +1054,7 @@ profile.buildNextProject();</pre>
           <span class="section-kicker">Selected Work</span>
           <h2>Featured Projects</h2>
         </div>
-        <p>Live projects by Kenneth Godspower. Each card opens the project in a new tab.</p>
+        <p>Live projects by Kenneth Godspower — now featuring 4 projects, including the Maths Quiz. Each card opens the project in a new tab.</p>
       </div>
 
       <div class="projects">
@@ -1050,7 +1063,7 @@ profile.buildNextProject();</pre>
             <span class="project-number">01</span>
             <span class="tag">Completed</span>
           </div>
-          <h3>Elements Page</h3>
+          <h3>Completed Elements Table</h3>
           <p>A completed elements table/page created as part of my continuous programming practice.</p>
           <span class="project-link">Open project →</span>
         </a>
@@ -1072,6 +1085,16 @@ profile.buildNextProject();</pre>
           </div>
           <h3>Unit Converter Calculator</h3>
           <p>A unit converter calculator designed to help users quickly convert different measurements and values.</p>
+          <span class="project-link">Open project →</span>
+        </a>
+
+        <a class="panel project-card" href="https://paschal6.github.io/maths-1/index.html" target="_blank" rel="noopener noreferrer">
+          <div class="project-top">
+            <span class="project-number">04</span>
+            <span class="tag">Live Project</span>
+          </div>
+          <h3>Maths Quiz</h3>
+          <p>A maths quiz project created to help users practice questions and test their mathematics knowledge.</p>
           <span class="project-link">Open project →</span>
         </a>
       </div>
@@ -1142,5 +1165,5 @@ profile.buildNextProject();</pre>
       });
     });
   </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a11d09898b06aa64',t:'MTc4MjQ4NTU2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
